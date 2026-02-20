@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>23 Februari – Raraaa 💙</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  font-family:'Comic Sans MS', cursive;
+  text-align:center;
+  background:linear-gradient(to bottom,#b3e5ff,#e6f7ff,#ffffff);
+  color:#004466;
+  overflow-x:hidden;
+}
+
+/* DREAMY BOX */
+.box{
+  background:rgba(255,255,255,0.9);
+  padding:20px;
+  border-radius:25px;
+  width:90%;
+  max-width:400px;
+  margin:20px auto;
+  box-shadow:0 8px 25px rgba(0,0,0,0.1);
+  animation:fadeUp 1s ease;
+}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(20px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+button{
+  padding:10px 20px;
+  border:none;
+  border-radius:20px;
+  background:#66ccff;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+  margin-top:10px;
+}
+
+button:hover{
+  transform:scale(1.05);
+}
+
+#cakeBox,#quizBox,#rewardBox,#letterBox{
+  display:none;
+}
+
+#rewardBox img{
+  width:150px;
+  margin-top:10px;
+  border-radius:20px;
+}
+
+/* HATI JATUH */
+.heart{
+  position:fixed;
+  top:-10px;
+  color:#66ccff;
+  font-size:20px;
+  animation:fall linear infinite;
+}
+
+@keyframes fall{
+  to{transform:translateY(110vh);}
+}
+
+/* GLITTER */
+.sparkle{
+  position:fixed;
+  width:5px;
+  height:5px;
+  background:white;
+  border-radius:50%;
+  animation:twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle{
+  from{opacity:0.2;}
+  to{opacity:1;}
+}
+</style>
+</head>
+
+<body>
+
+<h1>🎀 23 FEBRUARI – RARAAA 💙</h1>
+
+<div class="box">
+<h3>⏳ Countdown</h3>
+<p id="countdown"></p>
+</div>
+
+<div class="box" id="cakeBox">
+<h3>🧁 Make a Wish!</h3>
+<div onclick="blowCandle()" style="font-size:45px;cursor:pointer;">
+🕯🎂
+</div>
+<p id="wishText"></p>
+<button onclick="playMusic()">Play Song 🎶</button>
+</div>
+
+<div class="box" id="quizBox">
+<h3>🧠 Mini Quiz</h3>
+<p>6 + 6 = ?</p>
+<input type="number" id="q1"><br><br>
+<p>3 × 4 = ?</p>
+<input type="number" id="q2"><br><br>
+<button onclick="checkQuiz()">Jawab 💙</button>
+<p id="quizResult"></p>
+</div>
+
+<div class="box" id="rewardBox">
+<h3>🎉 YAYYYY!</h3>
+<img id="rewardImg">
+</div>
+
+<div class="box" id="letterBox">
+<h3>💌 Untuk Raraaa</h3>
+<p>
+Happy Birthday to you 💙<br>
+Happy Birthday to you 💙<br>
+Happy Birthday dear Raraaa~<br>
+Happy Birthday to youuu 🥳✨<br><br>
+
+Raraaa…<br><br>
+
+Kamu sering jadi orang yang kuat duluan.<br>
+Yang mikir duluan.<br>
+Yang nahan duluan.<br><br>
+
+Tapi hari ini,<br>
+kamu nggak perlu jadi apa-apa.<br>
+Cukup jadi kamu aja. 💙<br><br>
+
+Kalau suatu hari kamu merasa kecil atau nggak cukup…<br>
+ingat ya,<br>
+kamu tetap berharga bahkan di hari paling biasa kamu.<br><br>
+
+Aku bangga kamu masih bertahan sejauh ini.<br><br>
+
+Happy 23 Februari, Raraaa 💙<br>
+Semoga tahun ini lebih lembut ke kamu.
+</p>
+</div>
+
+<audio id="birthdayMusic"
+src="https://www2.cs.uic.edu/~i101/SoundFiles/HappyBirthday.mid">
+</audio>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<script>
+
+/* COUNTDOWN */
+var birthday=new Date("2026-02-23T00:00:00").getTime();
+
+var timer=setInterval(function(){
+  var now=new Date().getTime();
+  var distance=birthday-now;
+
+  if(distance>0){
+    var days=Math.floor(distance/(1000*60*60*24));
+    var hours=Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+    var minutes=Math.floor((distance%(1000*60*60))/(1000*60));
+    var seconds=Math.floor((distance%(1000*60))/1000);
+
+    countdown.innerHTML=
+    days+" hari "+hours+" jam "+minutes+" menit "+seconds+" detik 💙";
+  }else{
+    clearInterval(timer);
+    countdown.innerHTML="HAPPY BIRTHDAY RARAAA 🎉💙";
+    confetti({particleCount:300,spread:120});
+    cakeBox.style.display="block";
+  }
+},1000);
+
+/* TIUP LILIN */
+function blowCandle(){
+  wishText.innerHTML="Make a wishhh 🥳✨";
+  confetti({particleCount:200,spread:100});
+  setTimeout(function(){
+    quizBox.style.display="block";
+  },1500);
+}
+
+/* PLAY MUSIC */
+function playMusic(){
+  birthdayMusic.play();
+}
+
+/* QUIZ */
+function checkQuiz(){
+  if(q1.value==12 && q2.value==12){
+    quizResult.innerHTML="BENERRR 🎉💙";
+    confetti({particleCount:200,spread:100});
+    rewardBox.style.display="block";
+
+    if(Math.random()<0.5){
+      rewardImg.src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif";
+    }else{
+      rewardImg.src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif";
+    }
+
+    setTimeout(function(){
+      letterBox.style.display="block";
+    },1500);
+
+  }else{
+    quizResult.innerHTML="Coba lagi yaaa 🥺";
+  }
+}
+
+/* HUJAN HATI */
+setInterval(function(){
+  var heart=document.createElement("div");
+  heart.innerHTML="💙";
+  heart.className="heart";
+  heart.style.left=Math.random()*100+"vw";
+  heart.style.animationDuration=(3+Math.random()*3)+"s";
+  document.body.appendChild(heart);
+  setTimeout(function(){heart.remove();},6000);
+},300);
+
+/* GLITTER */
+for(let i=0;i<40;i++){
+  let s=document.createElement("div");
+  s.className="sparkle";
+  s.style.top=Math.random()*100+"vh";
+  s.style.left=Math.random()*100+"vw";
+  document.body.appendChild(s);
+}
+
+</script>
+
+</body>
+</html>
